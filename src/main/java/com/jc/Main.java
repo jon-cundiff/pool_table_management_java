@@ -1,5 +1,6 @@
 package com.jc;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Main {
@@ -9,9 +10,7 @@ public class Main {
     public static void mainLoop() {
         while (running) {
             try {
-                for (PoolTable table : tables) {
-                    System.out.println(table.tableNumber);
-                }
+                UserDisplay.displayTablesStatuses(tables);
             } catch (Exception e) {
                 System.out.println("error");
             }
@@ -22,6 +21,7 @@ public class Main {
     public static void main(String[] args) {
         for (int i = 1; i <=6; i++) {
             tables.add(new PoolTable(i));
+            tables.get(i - 1).startDateTime = LocalDateTime.now();
         }
 
         mainLoop();

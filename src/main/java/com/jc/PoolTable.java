@@ -27,4 +27,8 @@ public class PoolTable {
         var hours = new BigDecimal(playTime / 60.0);
         return rate.multiply(hours).setScale(2, RoundingMode.HALF_UP);
     }
+
+    void checkOut() {
+        startDateTime = LocalDateTime.now();
+    }
 }

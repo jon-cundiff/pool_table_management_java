@@ -35,10 +35,17 @@ public class PoolTableTest {
     }
 
     @Test
-    @DisplayName("Pool Table can calculate cost properly")
+    @DisplayName("Pool table can calculate cost properly")
     void testPlayTimeCost() {
         int playTime = 30;
         BigDecimal cost = poolTable.getTotalCost(playTime);
         assertEquals(new BigDecimal("15.00"), cost);
+    }
+
+    @Test
+    @DisplayName("Pool table can be checked out")
+    void testCheckOut() {
+        poolTable.checkOut();
+        assertNotNull(poolTable.startDateTime);
     }
 }

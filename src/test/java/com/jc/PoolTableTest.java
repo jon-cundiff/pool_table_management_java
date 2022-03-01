@@ -24,4 +24,12 @@ public class PoolTableTest {
         poolTable.startDateTime = LocalDateTime.now();
         assertTrue(poolTable.isOccupied());
     }
+
+    @Test
+    @DisplayName("Pool table can calculate play time properly")
+    void testPlayTimeCalculation() {
+        poolTable.startDateTime = LocalDateTime.of(2021, 12, 1, 18, 0);
+        LocalDateTime endDateTime = LocalDateTime.of(2021, 12, 1, 18, 30);
+        assertEquals(30, poolTable.getTotalTimePlayed(endDateTime));
+    }
 }

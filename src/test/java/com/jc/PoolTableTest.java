@@ -2,6 +2,7 @@ package com.jc;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,9 +52,18 @@ public class PoolTableTest {
     }
 
     @Test
-    @DisplayName("Pool cannot be checked out while checked out")
+    @DisplayName("Pool table cannot be checked out while checked out")
     void testDuplicateCheckOut() {
         poolTable.startDateTime = startDateTime;
         assertThrows(IllegalAccessException.class, () -> poolTable.checkOut());
+    }
+
+    @Test
+    @DisplayName("Pool table can be checked in")
+    void testCheckIn() {
+        poolTable.startDateTime = startDateTime;
+        assertDoesNotThrow(() -> poolTable.checkIn());
+        assertNull(poolTable.startDateTime);
+        assertEquals(1, poolTable.entries.size());
     }
 }

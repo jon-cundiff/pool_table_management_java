@@ -42,7 +42,9 @@ public class PoolTable {
             throw new IllegalAccessException("Table not checked out!");
         }
 
-        var newEntry = new TableEntry();
+        LocalDateTime endDateTime = LocalDateTime.now();
+        int playTime = getTotalTimePlayed(endDateTime);
+        var newEntry = new TableEntry(startDateTime, endDateTime, playTime, getTotalCost(playTime));
         entries.add(newEntry);
 
         startDateTime = null;

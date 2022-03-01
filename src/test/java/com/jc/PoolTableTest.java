@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PoolTableTest {
     PoolTable poolTable;
+    LocalDateTime startDateTime = LocalDateTime.of(2021, 12, 1, 18, 0);
 
     @BeforeEach
     void init() {
@@ -29,7 +30,7 @@ public class PoolTableTest {
     @Test
     @DisplayName("Pool table can calculate play time properly")
     void testPlayTimeCalculation() {
-        poolTable.startDateTime = LocalDateTime.of(2021, 12, 1, 18, 0);
+        poolTable.startDateTime = startDateTime;
         LocalDateTime endDateTime = LocalDateTime.of(2021, 12, 1, 18, 30);
         assertEquals(30, poolTable.getTotalTimePlayed(endDateTime));
     }
@@ -45,7 +46,14 @@ public class PoolTableTest {
     @Test
     @DisplayName("Pool table can be checked out")
     void testCheckOut() {
-        poolTable.checkOut();
+        assertDoesNotThrow(() -> poolTable.checkOut());
         assertNotNull(poolTable.startDateTime);
+    }
+
+    @Test
+    @DisplayName("Pool cannot be checked out while checked out")
+    void testDuplicateCheckOut() {
+        poolTable.startDateTime = startDateTime;
+        assertThrows(IllegalAccessException.class, () -> poolTable.checkOut());
     }
 }

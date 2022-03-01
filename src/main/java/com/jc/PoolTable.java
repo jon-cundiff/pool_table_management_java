@@ -28,7 +28,10 @@ public class PoolTable {
         return rate.multiply(hours).setScale(2, RoundingMode.HALF_UP);
     }
 
-    void checkOut() {
+    void checkOut() throws IllegalAccessException {
+        if (startDateTime != null) {
+            throw new IllegalAccessException();
+        }
         startDateTime = LocalDateTime.now();
     }
 }

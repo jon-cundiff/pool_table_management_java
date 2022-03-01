@@ -47,4 +47,12 @@ public class PoolTable {
 
         startDateTime = null;
     }
+
+    String getStatus() {
+        if (startDateTime == null) {
+            return "Unoccupied";
+        } else {
+            return String.format("Occupied since %s", startDateTime);
+        }
+    }
 }

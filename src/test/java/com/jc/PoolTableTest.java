@@ -66,4 +66,11 @@ public class PoolTableTest {
         assertNull(poolTable.startDateTime);
         assertEquals(1, poolTable.entries.size());
     }
+
+    @Test
+    @DisplayName("Pool table cannot be checked in if not checked out")
+    void testImproperCheckIn() {
+        assertThrows(IllegalAccessException.class, () -> poolTable.checkIn());
+        assertEquals(0, poolTable.entries.size());
+    }
 }

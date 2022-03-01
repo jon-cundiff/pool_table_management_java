@@ -37,7 +37,11 @@ public class PoolTable {
         startDateTime = LocalDateTime.now();
     }
 
-    void checkIn() {
+    void checkIn() throws IllegalAccessException{
+        if (startDateTime == null) {
+            throw new IllegalAccessException("Table not checked out!");
+        }
+
         var newEntry = new TableEntry();
         entries.add(newEntry);
 

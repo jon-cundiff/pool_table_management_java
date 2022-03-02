@@ -25,4 +25,15 @@ public class UserDisplay {
                 Enter "q" to quit.
                 """);
     }
+
+    static void displayError(String message) {
+        System.out.println(message);
+        System.out.println("Press any key to continue...");
+        Main.sc.nextLine();
+    }
+
+    static int getPoolTableNumber(String message, int limit) {
+        System.out.printf("%s (1-%s)\n", message, limit);
+        return Main.sc.nextInt();
+    }
 }

@@ -1,8 +1,10 @@
 package com.jc;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UserDisplay {
+    static Scanner sc;
     static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -27,13 +29,20 @@ public class UserDisplay {
     }
 
     static void displayError(String message) {
+        sc = new Scanner(System.in);
         System.out.println(message);
         System.out.println("Press any key to continue...");
-        Main.sc.nextLine();
+        sc.nextLine();
     }
 
-    static int getPoolTableNumber(String message, int limit) {
-        System.out.printf("%s (1-%s)\n", message, limit);
-        return Main.sc.nextInt();
+    static String getCommand() {
+        sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    static int getPoolTableNumber(String message) {
+        sc = new Scanner(System.in);
+        System.out.printf("%s (1-%s)\n", message, Main.tables.size());
+        return sc.nextInt();
     }
 }

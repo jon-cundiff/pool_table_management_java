@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PoolTable {
@@ -55,7 +54,7 @@ public class PoolTable {
         if (startDateTime == null) {
             return "Unoccupied";
         } else {
-            return String.format("Occupied since %s", startDateTime.format(DateTimeFormatter.ofPattern("MM/dd - hh:mm a")));
+            return String.format("Occupied since %s", startDateTime.format(UserDisplay.dtFormat));
         }
     }
 }

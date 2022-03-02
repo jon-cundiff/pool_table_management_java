@@ -27,7 +27,11 @@ public class Main {
                                 "Which table number is getting checked in?");
                         tables.get(tableIndex - 1).checkIn();
                     }
-                    case "3" -> System.out.println(3);
+                    case "3" -> {
+                        int tableIndex = UserDisplay.getPoolTableNumber(
+                                "Which table number would you like to view entries for?");
+                        UserDisplay.displayTableEntries(tableIndex - 1);
+                    }
                     case "q", "quit" -> running = false;
                     default -> throw new Exception("Invalid Input");
                 }

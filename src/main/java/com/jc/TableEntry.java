@@ -15,4 +15,19 @@ public class TableEntry {
         this.durationMins = duration;
         this.cost = cost;
     }
+
+    String getEntry() {
+        return String.format("""
+                ===============================
+                  Start    - %s
+                  End      - %s
+                  Duration - %s mins
+                  Cost     - $%s
+                ===============================""",
+                checkOutDateTime.format(UserDisplay.dtFormat),
+                checkInDateTime.format(UserDisplay.dtFormat),
+                durationMins,
+                cost
+                );
+    }
 }
